@@ -190,4 +190,23 @@ function Numv6.hundp(val: num): num
 	return Numv6.buyPercent(val, 1)
 end
 
+function Numv6.sqrtN(val: num, iterations: num): num
+	for _=1,iterations do
+		val = Numv6.sqrt(val)
+	end
+	return val
+end
+
+function Numv6.sqrt10(val: num): num
+	return Numv6.sqrtN(val, 10)
+end
+
+function Numv6.sqrt5(val: num): num
+	return Numv6.sqrtN(val, 5)
+end
+
+function Numv6.sqrt2(val: num): num
+	return Numv6.sqrtN(val, 2)
+end
+
 return Numv6
