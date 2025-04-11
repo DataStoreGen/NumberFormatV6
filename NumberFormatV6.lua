@@ -106,8 +106,7 @@ function Numv6.short(val: num, digit: num?): string
 	local index = math.floor(exp/3)-1
 	local lf = math.fmod(exp, 3)
 	if index <= -1 then return tostring(val) end
-	local rm = exp%3
-	man = Numv6.cutDigits(man * (10^rm) + 0.001, digit:: num)
+	man = Numv6.cutDigits(man * (10^lf) + 0.001, digit:: num)
 	if index < 3 then
 		return man .. set[index+1] or ''
 	end
@@ -231,6 +230,20 @@ function Numv6.encodeData(val: num, oldData: num): num
 		new = Numv6.max(new, old)
 	end
 	return Numv6.lbencode(new)
+end
+
+function Numv6.mod(val1: num, val2: num): num
+	return val1 - Numv6.floor(val1/val2)*val2
+end
+
+function Numv6.ceil(val: num): num
+	return (val%1==0) and val or (val-(val%1)+1)
+end
+
+function Numv6.modf(val: num): (num, num)
+	local int = val - (val%1)
+	local frac = val - int
+	return int, frac
 end
 
 return Numv6
