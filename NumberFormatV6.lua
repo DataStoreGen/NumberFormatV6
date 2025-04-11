@@ -217,9 +217,9 @@ function Numv6.max(val1: num, val2: num): num
 	return (val1 > val2) and val1 or val2
 end
 
-function Numv6.clamp(val1: num, val2: num, clamp: num): num
-	if val1 < val2 then return val2 end
-	if val1 > clamp then return clamp end
+function Numv6.clamp(val1: num, minVal: num, maxVal: num): num
+	if val1 < minVal then return minVal end
+	if val1 > maxVal then return maxVal end
 	return val1
 end
 
@@ -227,7 +227,7 @@ function Numv6.encodeData(val: num, oldData: num): num
 	local new = val
 	if oldData then
 		local old = Numv6.lbdecode(oldData)
-		new = Numv6.max(new, old)
+		new = Numv6.clamp(0, old, new)
 	end
 	return Numv6.lbencode(new)
 end
