@@ -1,3 +1,4 @@
+--!optimize 2
 --!native
 local Numv6 = {}
 type num = number
